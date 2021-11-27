@@ -31,17 +31,19 @@ export const loginUser = async (req: Request, res: Response) => {
 	}
 }
 
+
 export const logoutUser = async (req: Request, res: Response) => {
+	interface tokenInterface {
+		token: string
+	}
 	try {
-		// Token fix later
-		console.log('req.user.tokens ', req.user.tokens)
-		req.user.tokens = req.user.tokens.filter((token: any) => {
-			console.log('token:any ',token)
+		req.user.tokens = req.user.tokens.filter((token: tokenInterface) => {
 			return token.token !== req.token
 		})
+		await req.user.save()
 		res.status(200).clearCookie('isLogged').clearCookie('jwt').send()
 	} catch (e) {
-		res.status(500).send()
+		res.status(500).send(e)
 	}
 }
 

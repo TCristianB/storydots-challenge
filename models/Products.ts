@@ -7,7 +7,7 @@ export interface ProductInterface extends mongoose.Document {
 	price: number
 }
 
-const productSchema = new Schema({
+const productSchema: Schema<ProductInterface> = new Schema({
 	name: {
 		type: String,
 		required: true,

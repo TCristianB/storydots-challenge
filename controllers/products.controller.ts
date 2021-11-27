@@ -40,4 +40,27 @@ export const getProductsById = async (req: Request, res: Response) => {
 export const updateProductsById = async (req: Request, res: Response) => {
 	const _id = req.params.id
 
+	const updates = Object.keys(req.body)
+	const allowedUpdates = ['name', 'description', 'image_url', 'price']
+	const isValidOperation = updates.every((update) => allowedUpdates.includes(update))
+
+	if (!isValidOperation) {
+		return res.status(400).send({ error: 'Invalid updates!' })
+	}
+
+	try {
+		const project = await Product.findOne({ _id, owner: req.user._id })
+
+		if (!project) {
+			return res.status(404).send()
+		}
+		updates.forEach((update) => {
+			project[update] = req.body[update]
+		})
+
+		res.status(200).send(project)
+	} catch (e) {
+		res.status(500).send(e)
+	}
+
 }
