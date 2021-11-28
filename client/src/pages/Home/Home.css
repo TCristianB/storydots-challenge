@@ -1,0 +1,8 @@
+.card {
+	max-width: 286px;
+}
+
+.card__price {
+	margin-left: 10px;
+	font-size: 20px;
+}

@@ -1,0 +1,13 @@
+.Auth {
+	display: flex;
+	justify-content: center;
+	padding-top: 30px;
+}
+
+.Auth__container {
+	width: 60%;
+}
+
+.Auth__container--title {
+	margin-bottom: 20px;
+}
