@@ -12,6 +12,7 @@ export const getProducts = async (req: Request, res: Response) => {
 }
 
 export const createProducts = async (req: Request, res: Response) => {
+	console.log(req.body)
 	const product = new Product(req.body)
 	try {
 		await product.save()
