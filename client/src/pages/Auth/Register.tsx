@@ -63,7 +63,7 @@ const Register = () => {
 						<label htmlFor="name">First Name</label><br />
 						<input
 							className="form-control"
-							id="name"
+							id="firstName"
 							type="text"
 							{...register('firstName', { required: 'Required' })}
 						/>

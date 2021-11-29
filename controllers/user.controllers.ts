@@ -61,6 +61,47 @@ export const getUserById = async (req: Request, res: Response) => {
 	}
 }
 
+export const getMe = async (req: Request, res: Response) => {
+	try {
+		res.status(200).send(req.user)
+	} catch (e) {
+		res.status(500).send(e)
+	}
+}
+
+export const updateMe = async (req: Request, res: Response) => {
+	const updates = Object.keys(req.body)
+	console.log(updates)
+	const allowedUpdates = ['firstName', 'lastName', 'email']
+	const isValidOperation = updates.every((update) => allowedUpdates.includes(update))
+
+	if (!isValidOperation) {
+		return res.status(400).send({ error: 'Invalid updates!' })
+	}
+
+	try {
+		updates.forEach((update) => {
+			req.user[update] = req.body[update]
+		})
+
+		await req.user.save()
+
+		res.status(200).send(req.user)
+	} catch (e) {
+		console.log(e)
+		res.status(400).send(e)
+	}
+}
+
+export const getCurrentUserProducts = async (req: Request, res: Response) => {
+	try {
+        await req.user.populate('products')
+        res.send(req.user.products)
+    } catch (e) {
+        res.status(500).send(e)
+    }
+}
+
 export const updateUser = async (req: Request, res: Response) => {
 	const _id = req.params.id
 

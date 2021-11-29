@@ -1,0 +1,17 @@
+.Profile__data {
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+.Profile__data > p{
+	margin-bottom: 0;
+}
+
+.delete-product {
+	margin-left: 10px;
+}
+
+.card-title {
+	color: black;
+	text-decoration: none;
+}

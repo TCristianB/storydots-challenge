@@ -44,6 +44,13 @@ const userSchema: Schema<UserInterface> = new Schema({
 	}]
 })
 
+userSchema.virtual('products', {
+	ref: 'Product',
+	localField: '_id',
+	foreignField: 'owner'
+})
+
+
 userSchema.methods.generateAuthToken = async function () {
 	const user = this
 	const token = jwt.sign({ _id: user._id.toString() }, process.env.JWT_SECRET as string)

@@ -9,8 +9,11 @@ import Notification from '../components/Notification'
 import Home from '../pages/Home/Home'
 import Login from '../pages/Auth/Login'
 import Register from '../pages/Auth/Register'
-import Profile from '../pages/Profile'
-import CreateProduct from '../pages/Products/CreateProduct'
+import Profile from '../pages/Profile/Profile'
+import CreateProduct from '../pages/Products/AddProduct'
+import ProductPage from '../pages/Products/ProductPage'
+import EditProfile from '../pages/Profile/EditProfile'
+import EditProduct from '../pages/Products/EditProduct'
 
 const Main = () => {
 	const [errorMessage, setErrorMessage] = useState('')
@@ -92,7 +95,10 @@ const Main = () => {
 				<Route exact path="/" render={() => <Redirect to="/home" />} />
 				<Route exact path="/home" component={Home} />
 				<Route exact path="/profile" component={Profile} />
+				<Route exact path="/profile/edit" component={EditProfile} />
 				<Route exact path="/create-product" component={CreateProduct} />
+				<Route exact path='/products/:id' component={ProductPage} />
+				<Route exact path='/products/:id/edit' component={EditProduct} />
 				<Route exact path="/login" component={Login} />
 				<Route exact path="/register" component={Register} />
 			</Switch>

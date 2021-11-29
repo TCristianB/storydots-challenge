@@ -5,7 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import axios from 'axios'
 
-import './CreateProduct.css'
+import './AddProduct.css'
 
 const schema = yup.object().shape({
 	name: yup.string().required('Name is a required field'),
@@ -14,7 +14,7 @@ const schema = yup.object().shape({
 	price: yup.number().required('Number is a required field')
 })
 
-const CreateProduct = () => {
+const AddProduct = () => {
 	const { register, handleSubmit, formState: { errors } } = useForm({
 		resolver: yupResolver(schema)
 	})
@@ -56,8 +56,9 @@ const CreateProduct = () => {
 				</div>
 				<div className="form-group mt-3">
 					<label>Description</label>
-					<input 
-					type="text" 
+					<textarea 
+					rows={10}
+					cols={30}
 					className="form-control"
 					autoComplete="off"
 					{...register('description', { required: 'Required' })}
@@ -67,7 +68,7 @@ const CreateProduct = () => {
 				<div className="form-group mt-3">
 					<label>Image</label>
 					<input 
-					type="text" 
+					type="text"
 					className="form-control" 
 					placeholder="Paste a url"
 					autoComplete="off"
@@ -91,4 +92,4 @@ const CreateProduct = () => {
 	)
 }
 
-export default CreateProduct
+export default AddProduct

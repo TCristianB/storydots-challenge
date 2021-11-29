@@ -2,7 +2,7 @@ export {}
 const express = require('express')
 const router = express.Router()
 
-const {  getProducts, createProducts, getProductsById, updateProductsById } = require('../controllers/products.controller')
+const {  getProducts, createProducts, getProductsById, updateProductsById, deleteProduct } = require('../controllers/products.controller')
 const  { auth }= require('../middleware/auth')
 
 // Get all products
@@ -15,6 +15,9 @@ router.post('/', auth, createProducts)
 router.get('/:id', getProductsById)
 
 // Update a product by ID
-router.patch('/:id', auth,updateProductsById)
+router.patch('/:id', auth, updateProductsById)
+
+// Delete a product
+router.delete('/:id', auth, deleteProduct)
 
 module.exports = router

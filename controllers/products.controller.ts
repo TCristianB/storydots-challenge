@@ -11,9 +11,13 @@ export const getProducts = async (req: Request, res: Response) => {
 	}
 }
 
+
 export const createProducts = async (req: Request, res: Response) => {
-	console.log(req.body)
-	const product = new Product(req.body)
+	const product = new Product({
+		...req.body,
+		owner: req.user._id
+	})
+
 	try {
 		await product.save()
 		res.status(201).send(product)
@@ -50,18 +54,35 @@ export const updateProductsById = async (req: Request, res: Response) => {
 	}
 
 	try {
-		const project = await Product.findOne({ _id, owner: req.user._id })
+		const product = await Product.findOne({ _id, owner: req.user._id })
 
-		if (!project) {
+		if (!product) {
 			return res.status(404).send()
 		}
 		updates.forEach((update) => {
-			project[update] = req.body[update]
+			product[update] = req.body[update]
 		})
 
-		res.status(200).send(project)
+		await product.save()
+
+		res.status(200).send(product)
 	} catch (e) {
 		res.status(500).send(e)
 	}
 
+}
+
+export const deleteProduct = async (req: Request, res: Response) => {
+	const _id = req.params.id
+
+	try {
+		const product = await Product.findOneAndDelete({ _id, owner: req.user._id })
+		if (!product) {
+			return res.status(404).send()
+		}
+
+		res.status(200).send(product)
+	} catch (e) {
+		res.status(500).send(e)
+	}
 }
