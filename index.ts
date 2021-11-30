@@ -13,14 +13,14 @@ const PORT = process.env.PORT || 8000
 app.use(cookieParser())
 app.use(express.json())
 
+app.use('/api/products', productsRouter)
+app.use('/api/users', usersRouter)
+
 if (process.env.NODE_ENV === 'production') {
 	app.use(express.static(path.resolve(__dirname, "../client/build")))
 	app.get('*', (req: Request, res: Response) => {
 		res.sendFile(path.resolve(__dirname, '..', 'client', 'build', 'index.html'))
 	})
 }
-
-app.use('/api/products', productsRouter)
-app.use('/api/users', usersRouter)
 
 app.listen(PORT, () => console.log(`Server is running on PORT ${PORT}`))
