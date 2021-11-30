@@ -1,4 +1,5 @@
 const express = require('express')
+import { Request, Response } from 'express'
 const path = require('path')
 const productsRouter = require('./routes/products.routes')
 const usersRouter = require('./routes/users.routes')
@@ -14,6 +15,9 @@ app.use(express.json())
 
 if (process.env.NODE_ENV === 'production') {
 	app.use(express.static('../client/build'))
+	app.get('*', (req: Request, res: Response) => {
+		res.sendFile(path.resolve(__dirname,'..' ,'client', 'build', 'index.html'))
+	})
 }
 
 app.use('/api/products', productsRouter)

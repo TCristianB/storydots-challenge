@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var express = require('express');
 var path = require('path');
 var productsRouter = require('./routes/products.routes');
@@ -12,6 +13,9 @@ app.use(cookieParser());
 app.use(express.json());
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('../client/build'));
+    app.get('*', function (req, res) {
+        res.sendFile(path.resolve(__dirname, '..', 'client', 'build', 'index.html'));
+    });
 }
 app.use('/api/products', productsRouter);
 app.use('/api/users', usersRouter);
