@@ -60,9 +60,8 @@ const Profile = () => {
 						<Link to="/profile/edit" className="btn btn-primary mt-3">Edit profile</Link>
 					</div>
 					<h3>My products</h3>
-					<div>
-						{products ? products.map(product => {
-							console.log(products)
+					<div className="Profile__my-products">
+						{products.length > 0 ? products.map(product => {
 							const { _id, name, image_url, price } = product
 							return (
 								<div key={_id} className="card mt-5">

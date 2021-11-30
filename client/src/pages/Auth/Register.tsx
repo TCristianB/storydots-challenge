@@ -23,7 +23,7 @@ const Register = () => {
 		resolver: yupResolver(schema)
 	})
 
-	const isAuthenticated = JSON.parse(window.localStorage.getItem('isAuthenticated') || '{}')
+	const isAuthenticated = JSON.parse(window.localStorage.getItem('isAuthenticated') || 'false')
 	const history = useHistory()
 
 	interface userObject {
@@ -53,6 +53,11 @@ const Register = () => {
 			}, 5000)
 		}
 	}
+	
+	if (isAuthenticated) {
+		return <Redirect to="/home" />
+	}
+
 	return (
 		<div className="Auth">
 			<div className="Auth__container">

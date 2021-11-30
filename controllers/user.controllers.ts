@@ -71,7 +71,6 @@ export const getMe = async (req: Request, res: Response) => {
 
 export const updateMe = async (req: Request, res: Response) => {
 	const updates = Object.keys(req.body)
-	console.log(updates)
 	const allowedUpdates = ['firstName', 'lastName', 'email']
 	const isValidOperation = updates.every((update) => allowedUpdates.includes(update))
 

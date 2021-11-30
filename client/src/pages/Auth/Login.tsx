@@ -21,6 +21,8 @@ const Login = () => {
 	})
 	const history = useHistory()
 
+	const isAuthenticated = JSON.parse(window.localStorage.getItem('isAuthenticated') || 'false')
+
 	interface userObject {
 		email: string;
 		password: string;
@@ -43,6 +45,11 @@ const Login = () => {
 			}, 5000)
 		}
 	}
+
+	if (isAuthenticated) {
+		return <Redirect to="/home" />
+	}
+
 	return (
 		<div className="Auth">
 			<div className="Auth__container">
