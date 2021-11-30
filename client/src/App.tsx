@@ -1,4 +1,5 @@
 import React from 'react'
+// @ts-ignore
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 
 import './App.css';
