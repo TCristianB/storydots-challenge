@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run build:tsc && node ./buildtsc/index.js",
-    "build:tsc": "tsc && cp .env ./buildtsc/.env",
+    "build:tsc": "tsc",
 	"build": "cd client && npm run build",
 	"install-client": "cd client && npm install",
 	"heroku-postbuild": "npm run install-client && npm run build",
