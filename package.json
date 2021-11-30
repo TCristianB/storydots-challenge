@@ -4,8 +4,8 @@
   "description": "this is an ecommerce build with nodeJS and reactJS",
   "main": "index.js",
   "scripts": {
-    "start": "node ./buildtsc/index.js",
-    "build:tsc": "tsc",
+    "start": "npm run build:tsc && node ./buildtsc/index.js",
+    "build:tsc": "tsc && cp .env ./buildtsc/.env",
 	"build": "cd client && npm run build",
 	"install-client": "cd client && npm install",
 	"heroku-postbuild": "npm run install-client && npm run build",
