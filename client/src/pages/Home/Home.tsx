@@ -16,7 +16,6 @@ const Home = () => {
 			})
 	}, [])
 
-	console.log(products)
 	// Pagination settings
 	const productsPerPage = 10
 	const pagesVisited = pageNumber * productsPerPage
