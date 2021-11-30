@@ -16,6 +16,7 @@ const Home = () => {
 			})
 	}, [])
 
+	console.log(products)
 	// Pagination settings
 	const productsPerPage = 10
 	const pagesVisited = pageNumber * productsPerPage
@@ -40,7 +41,7 @@ const Home = () => {
 							</div>
 						</div>
 					)
-				}): <p>There are no products.</p>}
+				}) : <p>There are no products.</p>}
 			</div>
 			<ReactPaginate
 				previousLabel={"Previous"}
