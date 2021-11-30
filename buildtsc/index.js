@@ -10,8 +10,9 @@ var app = express();
 var PORT = process.env.PORT || 8000;
 app.use(cookieParser());
 app.use(express.json());
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('../client/build'));
+}
 app.use('/api/products', productsRouter);
 app.use('/api/users', usersRouter);
-if (process.env.NODE_ENV === 'production') {
-}
 app.listen(PORT, function () { return console.log("Server is running on PORT ".concat(PORT)); });
